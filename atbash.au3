@@ -27,7 +27,7 @@ Else
 		$full = StringReplace($full, @LF, '')
 		ConsoleWrite(atbash($full))
 	ElseIf $CmdLine[1] <> '-' Then
-		if FileExists($CmdLine[1]) Then
+		If FileExists($CmdLine[1]) Then
 			$full = FileRead($CmdLine[1])
 		Else
 			$full = $CmdLine[1]
@@ -37,23 +37,23 @@ Else
 EndIf
 Exit
 
-func atbash($text)
-    $letters = StringSplit(stringreplace($text, " ", ""), "")
-    $max = $letters[0] + 1
-    dim $convert[$max]
-    dim $output[$max]
-    $atbash = ""
-    For $i = 1 To $letters[0] step 1
-        $convert[$i] = asc ($letters[$i])
-        if $convert[$i] > 64 and $convert[$i] < 91 Then
-            $output[$i] = 91 - $convert[$i] + 64
-        ElseIf $convert[$i] > 96 and $convert[$i] < 123 Then
-            $output[$i] = 123 - $convert[$i] + 96
-        Else
-            $output[$i] = $convert[$i]
-        EndIf
-        $output[$i] = chr($output[$i])
-        $atbash = $atbash & $output[$i]
-    Next
-    return $atbash
-EndFunc
+Func atbash($text)
+	$letters = StringSplit(StringReplace($text, " ", ""), "")
+	$max = $letters[0] + 1
+	Dim $convert[$max]
+	Dim $output[$max]
+	$atbash = ""
+	For $i = 1 To $letters[0] Step 1
+		$convert[$i] = Asc($letters[$i])
+		If $convert[$i] > 64 And $convert[$i] < 91 Then
+			$output[$i] = 91 - $convert[$i] + 64
+		ElseIf $convert[$i] > 96 And $convert[$i] < 123 Then
+			$output[$i] = 123 - $convert[$i] + 96
+		Else
+			$output[$i] = $convert[$i]
+		EndIf
+		$output[$i] = Chr($output[$i])
+		$atbash = $atbash & $output[$i]
+	Next
+	Return $atbash
+EndFunc   ;==>atbash
