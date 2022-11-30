@@ -12,11 +12,11 @@
 
 #NoTrayIcon
 
-If $CmdLineRaw == "" Or $CmdLine[0] == 1 Then
+If $CmdLineRaw == "" Then
 	ConsoleWrite("Atbash ALBANESE Research Lab " & Chr(184) & " 2016" & @CRLF) ;
 	ConsoleWrite("Usage: " & @ScriptName & " <string/file.ext>" & @CRLF) ;
 Else
-	If $CmdLine[2] == '-' Then
+	If $CmdLine[1] == '-' Then
 		Local $sOutput
 		While True
 			$sOutput &= ConsoleRead()
@@ -25,22 +25,14 @@ Else
 		WEnd
 		$full = StringReplace($sOutput, @CRLF, '')
 		$full = StringReplace($full, @LF, '')
-		If $CmdLine[1] == "-e" Then
-			ConsoleWrite(atbash($full))
-		ElseIf $CmdLine[1] == "-d" Then
-			ConsoleWrite(atbash($full))
-		EndIf
-	ElseIf $CmdLine[2] <> '' Then
-		if FileExists($CmdLine[2]) Then
-			$full = FileRead($CmdLine[2])
+		ConsoleWrite(atbash($full))
+	ElseIf $CmdLine[1] <> '-' Then
+		if FileExists($CmdLine[1]) Then
+			$full = FileRead($CmdLine[1])
 		Else
-			$full = $CmdLine[2]
+			$full = $CmdLine[1]
 		EndIf
-		If $CmdLine[1] == "-e" Then
-			ConsoleWrite(atbash($full))
-		ElseIf $CmdLine[1] == "-d" Then
-			ConsoleWrite(atbash($full))
-		EndIf
+		ConsoleWrite(atbash($full))
 	EndIf
 EndIf
 Exit
