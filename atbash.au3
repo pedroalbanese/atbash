@@ -13,7 +13,6 @@
 #NoTrayIcon
 
 If $CmdLineRaw == "" Then
-	ConsoleWrite("Atbash ALBANESE Research Lab " & Chr(184) & " 2016" & @CRLF) ;
 	ConsoleWrite("Usage: " & @ScriptName & " <string/file.ext>" & @CRLF) ;
 Else
 	If $CmdLine[1] == '-' Then
