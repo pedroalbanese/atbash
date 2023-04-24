@@ -1,10 +1,8 @@
 <?php
-include 'atbash.php';
-$text = "abcdefghijklmnopqrstuvwxyz";
-$cipher = new AtbashCipher($text);
-$cipherText = $cipher->encode($text);
-$plainText = $cipher->decode($cipherText);
+include "atbash.php";
 
-echo $cipherText . "<BR>";
-echo $plainText;
+// Exemplo de uso
+$texto = "Hello World!";
+$resultado = atbash($texto);
+echo $resultado; // imprime "Svool Dliow"
 ?>

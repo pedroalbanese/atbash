@@ -1,28 +1,22 @@
 <?php
-class AtbashCipher{
-	private $abt;
-	private $rev_abt;
-	
-	public function __construct($abt) {
-		$this->abt = $abt;
-		$this->rev_abt = strrev($abt);
-	}
-	
-	public function encode($s) {
-		$res='';
-		foreach(str_split($s) as $char)
-			$res .= $this->switchChar($char);
-		return $res; 
-	}
-	
-	public function decode($s) {
-		return $this->encode($s);
-	}
-	
-	private function switchChar($char) {
-		$pos = strpos($this->abt, $char);
-		if($pos !== false)
-			return $this->rev_abt[$pos]; 
-		return $char; 
-	}
+function atbash($text) {
+    $alphabet = "abcdefghijklmnopqrstuvwxyz";
+    $reverseAlphabet = strrev($alphabet);
+    $result = "";
+    for ($i = 0; $i < strlen($text); $i++) {
+        $char = $text[$i];
+        $lowerChar = strtolower($char);
+        $isUpper = ($char !== $lowerChar);
+        $index = strpos($alphabet, $lowerChar);
+        if ($index !== false) {
+            $newChar = $reverseAlphabet[$index];
+            if ($isUpper) {
+                $newChar = strtoupper($newChar);
+            }
+            $result .= $newChar;
+        } else {
+            $result .= $char;
+        }
+    }
+    return $result;
 }
